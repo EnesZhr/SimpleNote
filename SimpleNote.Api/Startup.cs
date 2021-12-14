@@ -46,11 +46,18 @@ namespace SimpleNote.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SimpleNote.Api v1"));
             }
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SimpleNote.Api v1");
+                c.RoutePrefix = "";
+            }
+            );
+           
             app.UseHttpsRedirection();
+
+            app.UseDefaultFiles();
 
             app.UseRouting();
 
